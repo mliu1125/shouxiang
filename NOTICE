@@ -1,0 +1,30 @@
+PalmSpeak / 掌中有话 (bilingual web port)
+Copyright 2026 PalmSpeak contributors
+
+This product includes software developed as a web port of
+"掌中有话 · blcaptain-shouxiang" by 爆裂队长NEXT (BLCaptain),
+https://github.com/dososo/blcaptain-shouxiang
+licensed under the Apache License, Version 2.0.
+
+Ported / adapted components (Apache-2.0):
+  - js/data/lib.js      judgment library (指南断语库) data
+  - js/engine.js        reading engine (port of scripts/guide_reading.py)
+  - js/data/demo-obs.js sample observation structure follows the upstream
+                        指南观察契约 (observation contract)
+
+Original work in this repository (Apache-2.0):
+  - js/data/lib-en.js   English display layer
+  - js/vision.js        local heuristic palm vision
+  - js/report.js        single-file bilingual HTML report renderer
+  - js/i18n.js, js/app.js, index.html, css/site.css
+
+Upstream documentation is CC BY 4.0; the English wording here is an
+adaptation for entertainment use, not a scholarly translation.
+
+The upstream author's hand photographs and example report media are
+NOT included or reused in this repository. The sample hand image
+(assets/demo-palm.jpg) is an AI-generated asset created for this project
+and is labelled as such; it is not a real person's palm.
+
+This product is for entertainment only. It does not provide medical
+diagnosis or investment advice.

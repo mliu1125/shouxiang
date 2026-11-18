@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>掌中有话 · PalmSpeak — 中英文手相指南</title>
+<meta name="description" content="上传一张手掌照片，浏览器本地生成中英双语手相指南：签、六项指数、流年流月、掌上年龄尺与人生阶段。照片不上传。Upload a palm photo and get a bilingual palm-reading guide generated entirely in your browser."/>
+<meta property="og:title" content="掌中有话 · PalmSpeak"/>
+<meta property="og:description" content="一张手照，一份报告 · One photo, one report. Local, private, bilingual."/>
+<meta property="og:type" content="website"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%232997ff' font-family='sans-serif' font-weight='700'%3E掌%3C/text%3E%3C/svg%3E"/>
+<link rel="stylesheet" href="css/site.css"/>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a class="brand" href="#top" data-i18n="brand">掌中有话</a>
+  <div class="nav-actions">
+    <button id="langBtn" class="lang-btn" type="button" data-i18n="langBtn">EN</button>
+    <a id="ghLink" class="icon-btn" href="https://github.com/Sileec/Fork-blcaptain-shouxiang" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.66.41.35.77 1.05.77 2.12v3.14c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- VIEW 1 · upload -->
+  <section class="view" id="viewUpload">
+    <header class="hero">
+      <p class="kicker" data-i18n="heroKicker">娱乐向 · 本地生成 · 不上传</p>
+      <h1 data-i18n="heroTitle1">掌中有话</h1>
+      <p class="hero-sub" data-i18n="heroDesc">一张手照，一份报告。</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" id="heroUpload" type="button" data-i18n="heroCta">上传手相照片</button>
+        <button class="btn-text" id="heroDemo" type="button" data-i18n="heroDemo">先看示例报告 →</button>
+      </div>
+      <svg class="palm-mark" viewBox="0 0 300 380" fill="none" aria-hidden="true">
+        <path stroke="#86868b" stroke-width="1.6" stroke-linejoin="round" opacity=".7"
+          d="M112,362 C100,330 92,300 90,262 L88,208 C86,170 84,140 88,118 C90,104 102,104 104,118 C107,142 108,168 110,196 L114,196 C112,160 112,120 116,92 C118,76 132,76 134,92 C137,124 138,160 140,192 L146,192 C144,150 144,100 148,64 C150,46 166,46 168,64 C171,102 172,150 174,192 L180,192 C180,156 182,116 186,88 C188,72 202,72 204,88 C207,120 208,156 210,196 C214,206 220,214 228,222 C244,206 258,196 268,200 C280,206 280,222 270,232 C254,248 240,262 232,282 C226,300 220,330 214,362 Z"/>
+        <g stroke-linecap="round" stroke-width="2">
+          <path stroke="#2997ff" d="M90,236 C120,220 150,214 176,206"/>
+          <path stroke="#86868b" opacity=".75" d="M198,240 C170,248 140,254 108,270"/>
+          <path stroke="#86868b" opacity=".75" d="M204,238 C182,258 168,290 158,336"/>
+          <path stroke="#86868b" opacity=".75" d="M152,344 C150,310 150,270 158,206"/>
+          <path stroke="#86868b" opacity=".5" stroke-width="1.4" d="M118,352 C140,346 165,346 188,352"/>
+        </g>
+      </svg>
+    </header>
+
+    <div class="upload-card" id="dropzone" tabindex="0" role="button" aria-label="upload">
+      <input type="file" id="fileInput" accept="image/*" hidden/>
+      <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden/>
+      <div id="dzInner">
+        <p class="dz-title" data-i18n="dropTitle">把手掌照片拖到这里</p>
+        <div class="dz-btns">
+          <button class="btn btn-primary" id="chooseBtn" type="button" data-i18n="dropBtn">选择照片</button>
+          <button class="btn btn-ghost" id="cameraBtn" type="button" data-i18n="dropCamera">拍照</button>
+        </div>
+        <p class="dz-hint" data-i18n="dropHint">JPG / PNG / WebP · 掌心朝上、五指张开、自然光、腕纹入镜</p>
+      </div>
+      <p class="upload-error" id="uploadError" hidden></p>
+    </div>
+    <p class="privacy-line" data-i18n="privacyLine">照片只在你本机处理，绝不上传。</p>
+  </section>
+
+  <!-- VIEW 2 · analyzing -->
+  <section class="view" id="viewAnalyzing" hidden>
+    <div class="analyzing-card">
+      <canvas id="previewCanvas"></canvas>
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="analyzing-text" id="analyzingText" data-i18n="analyzing">正在本地分析掌纹…</p>
+    </div>
+  </section>
+
+  <!-- VIEW 3 · report -->
+  <section class="view" id="viewReport" hidden>
+    <div class="report-head">
+      <h2 data-i18n="reportTitle">你的手相指南已生成</h2>
+      <p class="report-sub" data-i18n="reportSub">单文件 HTML · 原照内嵌 · 离线可开 · 中英切换</p>
+    </div>
+    <div class="report-actions">
+      <button class="btn btn-primary" id="downloadBtn" type="button" data-i18n="downloadBtn">下载 HTML 报告</button>
+      <button class="btn btn-ghost" id="openBtn" type="button" data-i18n="openBtn">新窗口打开</button>
+      <button class="btn btn-ghost" id="newPhotoBtn" type="button" data-i18n="newPhotoBtn">换一张照片</button>
+    </div>
+    <div class="report-frame-wrap"><iframe id="reportFrame" title="palm report"></iframe></div>
+
+    <details class="tune" id="tunePanel">
+      <summary data-i18n="tuneTitle">微调观察（可选）</summary>
+      <div class="tune-body">
+        <p class="tune-sub" data-i18n="reviewSub">算法只给候选，看不清的不硬断。对照原照修正状态与属性，断语才贴你。</p>
+        <div class="review-grid">
+          <div class="review-photo">
+            <div class="canvas-wrap" id="canvasWrap">
+              <canvas id="overlayCanvas"></canvas>
+              <div class="redraw-badge" id="redrawBadge" hidden></div>
+            </div>
+            <div class="photo-tools">
+              <h3 data-i18n="photoTools">描线工具</h3>
+              <p class="tool-hint" data-i18n="redrawHint">选一条线，在照片上依次点击描出真实纹路（至少 3 点），点「完成」。年龄尺按你描的线计算。</p>
+              <div class="tool-btns" id="toolBtns"></div>
+              <div class="tool-actions" id="toolActions" hidden>
+                <button class="btn btn-primary sm" id="redrawDone" type="button" data-i18n="redrawDone">完成</button>
+                <button class="btn btn-ghost sm" id="redrawClear" type="button" data-i18n="redrawClear">清除</button>
+                <button class="btn btn-ghost sm" id="redrawCancel" type="button" data-i18n="redrawCancel">取消</button>
+              </div>
+              <div class="legend" id="legend"><h3 data-i18n="legendTitle">图例</h3><ul></ul></div>
+            </div>
+          </div>
+          <div class="review-form">
+            <div class="form-row">
+              <label><span data-i18n="fieldHand">手别</span>
+                <select id="handSelect"><option value="左手" data-i18n="handLeft">左手</option><option value="右手" data-i18n="handRight">右手</option></select>
+              </label>
+              <label><span data-i18n="fieldAge">年龄（可选）</span>
+                <input type="number" id="ageInput" min="1" max="119" placeholder=""/>
+              </label>
+              <label><span data-i18n="fieldDate">推演日期</span>
+                <input type="date" id="dateInput" min="2025-01-01" max="2035-12-31"/>
+              </label>
+            </div>
+            <p class="date-hint" data-i18n="dateHint">流年月令覆盖 2025-01-01 至 2035-12-31</p>
+            <div class="question-row">
+              <label for="questionInput" data-i18n="fieldQuestion">问事（可选）</label>
+              <input type="text" id="questionInput" maxlength="60"/>
+              <div class="q-chips" id="qChips">
+                <button type="button" data-q="财运" data-i18n="qWealth">财运</button>
+                <button type="button" data-q="感情" data-i18n="qLove">感情</button>
+                <button type="button" data-q="事业" data-i18n="qCareer">事业</button>
+                <button type="button" data-q="健康" data-i18n="qHealth">健康</button>
+              </div>
+            </div>
+            <div id="featureGroups"></div>
+            <button class="btn btn-primary big" id="generateBtn" type="button"><span data-i18n="generateBtn">重新生成报告</span></button>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer class="footer">
+  <p data-i18n="footerDisclaimer">图一乐，身体不适请就医。本站不构成医学诊断或投资建议。</p>
+  <p class="small" data-i18n="footerPrivacy">照片、观察记录与报告全部在你浏览器本地生成，不经过任何服务器。</p>
+  <p class="small"><span data-i18n="footerCredit"></span> · <a href="LICENSE" target="_blank" rel="noopener" data-i18n="footerLicense">许可</a> · <a id="ghLink2" href="https://github.com/Sileec/Fork-blcaptain-shouxiang" target="_blank" rel="noopener" data-i18n="footerSource">源码</a></p>
+</footer>
+
+<script src="js/data/lib.js"></script>
+<script src="js/data/lib-en.js"></script>
+<script src="js/data/demo-obs.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/vision.js"></script>
+<script src="js/report.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
